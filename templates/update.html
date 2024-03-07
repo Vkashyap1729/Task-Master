@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Todo</title>
+</head>
+<body>
+    <h1>Edit Todo</h1>
+    <form method="POST">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" value="{{ todo.title }}"><br>
+        <label for="desc">Description:</label><br>
+        <textarea id="desc" name="desc">{{ todo.desc }}</textarea><br>
+        <input type="submit" value="Update Todo">
+    </form>
+</body>
+</html>

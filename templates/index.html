@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+</head>
+<body>
+    <h1>To-Do App</h1>
+    <form method="POST" action="/">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="desc">Description:</label><br>
+        <textarea id="desc" name="desc"></textarea><br>
+        <input type="submit" value="Add Todo">
+    </form>
+    <hr>
+    <h2>To-Do List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+            <tr>
+                <td>{{ todo.title }}</td>
+                <td>{{ todo.desc }}</td>
+                <td>{{ todo.dateCreated }}</td>
+                <td>
+                    <form action="/delete/{{ todo.sno }}" method="POST">
+                        <button type="submit">mark as done</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/update/{{ todo.sno }}" method="POST">
+                        <button type="submit">update</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
