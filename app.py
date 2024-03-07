@@ -36,8 +36,6 @@ def delete(sno):
     return redirect(url_for('home'))
 
 @app.route('/update/<int:sno>', methods=['GET', 'POST'])
-@app.route('/update/<int:sno>', methods=['GET', 'POST'])
-@app.route('/update/<int:sno>', methods=['GET', 'POST'])
 def update(sno):
     todo = Todo.query.get_or_404(sno)
     if request.method == 'POST':
