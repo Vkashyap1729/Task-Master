@@ -18,13 +18,6 @@ class Todo(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        title = request.form['title']
-        desc = request.form['desc']
-        todo = Todo(title=title, desc=desc)
-        db.session.add(todo)
-        db.session.commit()
-
     todos = Todo.query.all()
     return render_template('index.html', todos=todos)
 
@@ -38,17 +31,14 @@ def delete(sno):
 @app.route('/update/<int:sno>', methods=['GET', 'POST'])
 def update(sno):
     todo = Todo.query.get_or_404(sno)
-    if request.method == 'POST':
-        title = request.form.get('title')
-        desc = request.form.get('desc')
-        if title:
-            todo.title = title
-        if desc:
-            todo.desc = desc
-        db.session.commit()
-        return redirect(url_for('home'))
-    return render_template('update.html', todo=todo)
-
+    title = request.form.get('title')
+    desc = request.form.get('desc')
+    if title:
+        todo.title = title
+    if desc:
+        todo.desc = desc
+    db.session.commit()
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
